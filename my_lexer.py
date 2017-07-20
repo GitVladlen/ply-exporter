@@ -2,17 +2,9 @@ import ply.lex as lex
 from ply.lex import TOKEN
 import re
 
-tokens = ("NUMBER", "DNUMBER", "IDENT", "WORD")
+tokens = ("ID", "NAME")
 
-t_NUMBER = r'\d+'
-
-def t_DNUMBER(t):
-    r'\d+\.\d+'
-    t.value = float(t.value)
-    return t
-
-t_IDENT = r'\s+'
-t_WORD = r'[a-zA-Z]+'
+t_ID = r'ID: [C|A|L|N]\d{3}'
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
