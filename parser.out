@@ -1,0 +1,58 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> root
+Rule 1     root -> TAG value
+Rule 2     value -> TEXT
+
+Terminals, with rules where they appear
+
+TAG                  : 1
+TEXT                 : 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+root                 : 0
+value                : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . root
+    (1) root -> . TAG value
+
+    TAG             shift and go to state 2
+
+    root                           shift and go to state 1
+
+state 1
+
+    (0) S' -> root .
+
+
+
+state 2
+
+    (1) root -> TAG . value
+    (2) value -> . TEXT
+
+    TEXT            shift and go to state 4
+
+    value                          shift and go to state 3
+
+state 3
+
+    (1) root -> TAG value .
+
+    $end            reduce using rule 1 (root -> TAG value .)
+
+
+state 4
+
+    (2) value -> TEXT .
+
+    $end            reduce using rule 2 (value -> TEXT .)
+

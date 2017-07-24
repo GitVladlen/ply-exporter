@@ -1,9 +1,17 @@
 from my_lexer import tokens
 import ply.yacc as yacc
 
-def p_str(p):
-    '''str : NUMBER'''
+def p_root(p):
+    'root : TAG value'
     p[0] = p[1]
+
+def p_value(p):
+    '''value : TEXT'''
+    if len(p) > 2:
+        p[0] = p[1]+p[2]
+    else:
+        p[0] = p[1]
+
 
 def p_error(p):
     print ('Unexpected token:', p)

@@ -2,9 +2,16 @@ import ply.lex as lex
 from ply.lex import TOKEN
 import re
 
-tokens = ("ID", "NAME")
+tokens = (
+    "TAG",
 
-t_ID = r'ID: [C|A|L|N]\d{3}'
+    "TEXT",
+)
+
+t_TAG = r'\w+:'
+t_TEXT = r'\w+'
+
+t_ignore = " \n"
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
