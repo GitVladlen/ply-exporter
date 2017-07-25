@@ -4,11 +4,21 @@ import re
 
 tokens = (
     "TAG",
-
+    "ID",
+    "NAME",
     "TEXT",
 )
 
-t_TAG = r'\w+:'
+reserved = {
+    'id' : 'ID',
+    'name' : 'NAME'
+}
+
+def t_TAG(t):
+    r'\w+:'
+    t.type = reserved.get(t.value, 'ID')
+    return t
+
 t_TEXT = r'\w+'
 
 t_ignore = " \n"
